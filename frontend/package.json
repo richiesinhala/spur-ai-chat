@@ -1,0 +1,17 @@
+{
+  "name": "spur-frontend",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@sveltejs/kit": "latest",
+    "svelte": "latest"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "^7.0.0",
+    "vite": "latest"
+  }
+}
