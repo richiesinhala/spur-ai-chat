@@ -1,6 +1,6 @@
 {
   "name": "spur-backend",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
