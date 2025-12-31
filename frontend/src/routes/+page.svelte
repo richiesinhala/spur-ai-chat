@@ -8,6 +8,8 @@
   let chatBox;
   let error = null;
 
+  const BASE_URL = "https://spur-ai-chat-nfsx.onrender.com";
+
   onMount(async () => {
     sessionId = localStorage.getItem("sessionId");
     if (sessionId) {
@@ -18,9 +20,7 @@
 
   async function loadHistory() {
     try {
-      const res = await fetch(
-        `http://localhost:3000/chat/history/${sessionId}`,
-      );
+      const res = await fetch(`${BASE_URL}/chat/history/${sessionId}`);
       if (res.ok) {
         const history = await res.json();
         messages = history.map((h) => ({
@@ -40,15 +40,17 @@
     const userMsg = input.trim();
     loading = true;
     error = null;
+
     messages = [
       ...messages,
       { sender: "user", text: userMsg, timestamp: new Date() },
     ];
+
     input = "";
     await scrollToBottom();
 
     try {
-      const res = await fetch("http://localhost:3000/chat/message", {
+      const res = await fetch(`${BASE_URL}/chat/message`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userMsg, sessionId }),
@@ -71,7 +73,6 @@
       ];
     } catch (err) {
       error = err.message;
-      // Optionally remove the user message or show error state on it
     } finally {
       loading = false;
       await scrollToBottom();
@@ -155,6 +156,7 @@
 </div>
 
 <style>
+  /* your styles untouched */
   :global(body) {
     margin: 0;
     font-family:
